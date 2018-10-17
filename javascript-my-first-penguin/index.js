@@ -11,8 +11,8 @@ const MOVE_RIGHT = {"top" : ROTATE_RIGHT, "bottom" : ROTATE_LEFT, "right" : ADVA
 const MOVE_LEFT = {"top" : ROTATE_LEFT, "bottom" : ROTATE_RIGHT, "right" : ROTATE_RIGHT,"left" : ADVANCE };
 
 function moveTowardsCenterOfMap(body) {
-    let centerPointX = Math.floor((body.mapWidth)/2);
-    let centerPointY = Math.floor((body.mapHeight)/2);
+    let centerPointX = Math.floor((body.mapWidth)*0);
+    let centerPointY = Math.floor((body.mapHeight)*1);
     return moveTowardsPoint(body, centerPointX, centerPointY);
 }
 
@@ -20,7 +20,7 @@ function moveTowardsPoint(body, pointX, pointY) {
     let penguinPositionX = body.you.x;
     let penguinPositionY = body.you.y;
     let plannedAction = PASS;
-    
+
     if (penguinPositionX < pointX) {
         plannedAction =  MOVE_RIGHT[body.you.direction];
     } else if (penguinPositionX > pointX) {
@@ -66,7 +66,7 @@ function commandReceived(body) {
 
 module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-    let response = action(req);    
+    let response = action(req);
     context.res = {
         headers: {"Content-Type": 'application/json'},
         body: response
